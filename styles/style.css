@@ -136,16 +136,29 @@ td.delete {
   border: none;
 }
 
+td.delete {
+  border: none;
+}
+
 td.delete button {
   padding: 10px 15px;
   border-radius: 15px;
   border: none;
-  background-color: maroon;
+  background-color: #f0f0f0; /* light gray */
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
 }
 
 td.delete button:hover {
-  background-color: rgba(128, 0, 0, 0.795);
+  background-color: #ddd;
+}
+
+td.delete button img {
+  width: 20px;
+  height: 20px;
 }
 
 .editPastSemesters {

@@ -57,7 +57,7 @@ function addRows(count) {
               document.querySelectorAll(".semester").length + 1
             }"><button data-id="${
       document.querySelectorAll(".semester").length + 1
-    }">Delete</button></td>
+    }"><img src="images/image.png" alt="" /></button></td>
        `;
     const newSemester = document.createElement("tr");
     newSemester.classList.add(
