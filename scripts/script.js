@@ -14,10 +14,14 @@ function addEventListeners() {
       document
         .querySelectorAll(`[data-id="${inputData.id}"]`)
         .forEach((element) => {
-          console.log(element.value);
-          creditPoint *= element.value;
+          console.log(element);
+          if (element.value) creditPoint *= Number(element.value);
+          console.log("element value ", element.value);
+          console.log("creditPoint ", creditPoint);
           document.querySelector(`.credit-point-${inputData.id}`).innerHTML =
             creditPoint;
+
+          calclulateValues();
         });
     });
     calclulateValues();
@@ -47,6 +51,7 @@ function calclulateValues() {
     document.querySelector(".tcp").innerHTML = totalPoints;
   });
   const GP = totalPoints / totalUnits;
+  console.log("New GP: ", GP);
   document.querySelector(".gp").innerHTML = GP.toFixed(2);
 }
 
