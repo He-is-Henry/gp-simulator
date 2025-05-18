@@ -1,6 +1,10 @@
 function addEventListeners() {
   document.querySelectorAll(".delete").forEach((btn) => {
-    btn.addEventListener("click", deleteRow);
+    if (!btn._handleDelete) {
+      btn._handleDelete = () => deleteRow(btn.dataset.id);
+    }
+    btn.removeEventListener("click", btn._handleDelete);
+    btn.addEventListener("click", btn._handleDelete);
   });
   document.querySelectorAll("input").forEach((input) => {
     const inputData = input.dataset;
@@ -15,15 +19,18 @@ function addEventListeners() {
           document.querySelector(`.credit-point-${inputData.id}`).innerHTML =
             creditPoint;
         });
-      calclulateValues();
     });
+    calclulateValues();
   });
 }
 
-function deleteRow(e) {
-  const id = e.target.dataset.id;
+function deleteRow(id) {
+  console.log("deleting row ", id);
+
   const row = document.querySelector(`.table-row-${id}`);
+  console.log(row);
   row.remove();
+  calclulateValues();
 }
 
 addEventListeners();
@@ -80,9 +87,9 @@ document.querySelector(".addBtn").addEventListener("click", () => {
           <td class="credit-point-${
             document.querySelectorAll(".row").length + 1
           } credit-point">10</td>
-          <td class="delete" ><button data-id="${
+          <td class="delete" data-id="${
             document.querySelectorAll(".row").length + 1
-          }">Delete</button></td>
+          }"><button > <img src="images/image.png"/> </button></td>
 `;
 
   document.querySelector("tbody").appendChild(newRow);

@@ -26,13 +26,22 @@ function calclulateValues() {
   console.log(allInputs);
 }
 
-function deleteRow(e) {
-  const id = e.target.dataset.id;
+function deleteRow(id) {
+  console.log("deleting row ", id);
   const row = document.querySelector(`.table-row-${id}`);
   row.remove();
 }
 document.querySelectorAll(".delete").forEach((btn) => {
-  btn.addEventListener("click", deleteRow);
+  console.log(btn._handleDelete);
+  if (!btn._handleDelete) {
+    btn._handleDelete = () => {
+      deleteRow(btn.dataset.id);
+    };
+    console.log("Added a new one");
+  }
+  console.log(btn._handleDelete);
+  btn.removeEventListener("click", btn._handleDelete);
+  btn.addEventListener("click", btn._handleDelete);
 });
 function addRows(count) {
   for (let index = 0; index < count; index++) {
@@ -69,7 +78,16 @@ function addRows(count) {
   }
 
   document.querySelectorAll(".delete").forEach((btn) => {
-    btn.addEventListener("click", deleteRow);
+    console.log(btn._handleDelete);
+    if (!btn._handleDelete) {
+      btn._handleDelete = () => {
+        deleteRow(btn.dataset.id);
+      };
+      console.log("Added a new one");
+    }
+    console.log(btn._handleDelete);
+    btn.removeEventListener("click", btn._handleDelete);
+    btn.addEventListener("click", btn._handleDelete);
   });
 
   calclulateValues();
